@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Una pregunta especial 💌</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@500;700&family=Lato:wght@300;400&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Decorative hearts layer -->
+    <div id="hearts-canvas"></div>
+
+    <!-- SCREEN 1: Proposal -->
+    <div class="screen" id="screen-proposal">
+        <div class="card">
+            <span class="card-emoji">🌸</span>
+            <h1 class="card-title">Hola, tú 💗</h1>
+            <p class="card-subtitle">
+                Hay algo que llevo guardando en el corazón<br>
+                y ya no puedo seguir sin decírtelo…
+            </p>
+            <p class="question">¿Quieres ser mi novia?</p>
+            <div class="btn-row" id="btn-row">
+                <button class="btn btn-yes" id="btn-yes">Sí 💖</button>
+                <button class="btn btn-no" id="btn-no">No 🙈</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCREEN 2: Final letter -->
+    <div class="screen hidden" id="screen-final">
+        <div class="envelope-wrap">
+            <div class="envelope" id="envelope">
+                <div class="env-body">
+                    <div class="env-left"></div>
+                    <div class="env-right"></div>
+                    <div class="env-bottom"></div>
+                    <div class="env-flap"></div>
+                    <span class="env-seal">💌</span>
+
+                    <!-- Letter that pops out of the envelope -->
+                    <div class="letter">
+                        <p class="letter-heading">Para ti, con todo mi amor 🌹</p>
+                        <!--
+            PERSONALIZA TU MENSAJE AQUI:
+          -->
+                        <p class="letter-body">
+                            Desde el primer momento en que te vi,<br>
+                            supe que quería robarte sonrisas todos los días.<br>
+                            Eres mi lugar favorito en el mundo entero.<br>
+                            Gracias por decir que sí. 💕
+                        </p>
+                        <!--
+            CAMBIA EL src POR TU GIF FAVORITO:
+            Ej: src="https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif"
+          -->
+                        <img class="letter-gif"
+                            src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmp3bGxhZTExNjE1c3B5b3p6Znk1cWtqb2oycHF5M3NlYm43ZDQ0bSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ICOgUNjpvO0PC/giphy.gif"
+                            alt="gatito tierno" />
+                        <p class="letter-sign">— Tuyo/a para siempre 🌷</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
