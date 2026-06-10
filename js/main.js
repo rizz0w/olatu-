@@ -24,17 +24,22 @@
 
 /* ── NO BUTTON – ESCAPE LOGIC ────────────────────────────── */
 const btnNo = document.getElementById('btn-no');
+let noAnchored = false;
 
-// Convert to fixed positioning without visual jump
-(function anchorNoBtn() {
-    const r = btnNo.getBoundingClientRect();
-    btnNo.style.position = 'fixed';
-    btnNo.style.left = r.left + 'px';
-    btnNo.style.top = r.top + 'px';
-    btnNo.style.width = r.width + 'px';
-    btnNo.style.margin = '0';
-    btnNo.style.transition = 'left 0.22s cubic-bezier(0.22,1,0.36,1), top 0.22s cubic-bezier(0.22,1,0.36,1)';
-})();
+function anchorAndEscape() {
+    if (!noAnchored) {
+        const r = btnNo.getBoundingClientRect();
+        btnNo.style.position = 'fixed';
+        btnNo.style.left = r.left + 'px';
+        btnNo.style.top = r.top + 'px';
+        btnNo.style.width = r.width + 'px';
+        btnNo.style.margin = '0';
+        btnNo.style.transition = 'left 0.22s cubic-bezier(0.22,1,0.36,1), top 0.22s cubic-bezier(0.22,1,0.36,1)';
+        noAnchored = true;
+        document.getElementById('btn-row').style.justifyContent = 'center';
+    }
+    escapeBtn();
+}
 
 function escapeBtn() {
     const margin = 16;
@@ -46,11 +51,11 @@ function escapeBtn() {
     btnNo.style.top = (margin + Math.random() * maxY) + 'px';
 }
 
-btnNo.addEventListener('mouseenter', escapeBtn);
-btnNo.addEventListener('touchstart', escapeBtn, { passive: true });
-btnNo.addEventListener('click', escapeBtn);
+btnNo.addEventListener('mouseenter', anchorAndEscape);
+btnNo.addEventListener('touchstart', anchorAndEscape, { passive: true });
+btnNo.addEventListener('click', anchorAndEscape);
 
-/* ── YES BUTTON ─────────────────────────────────────────── */
+/* ── YES BUTTON CORREGIDO ─────────────────────────────────── */
 document.getElementById('btn-yes').addEventListener('click', function () {
     launchConfetti();
 
@@ -73,7 +78,21 @@ document.getElementById('btn-yes').addEventListener('click', function () {
                 final.style.transform = 'scale(1)';
 
                 setTimeout(() => {
-                    document.getElementById('envelope').classList.add('open');
+                    const envelope = document.getElementById('envelope');
+                    const letter = envelope.querySelector('.letter');
+
+                    // SOLUCIÓN: Alto automático basado en el contenido real para eliminar el gap
+                    letter.style.height = 'auto';
+                    const letterHeight = letter.offsetHeight;
+
+                    // Desplazamiento exacto dejando solo un leve margen dentro del sobre
+                    envelope.style.setProperty('--letter-ty', -(letterHeight - 25) + 'px');
+                    envelope.classList.add('open');
+
+                    // Corazón desaparece cuando la carta está totalmente visible
+                    setTimeout(() => {
+                        envelope.querySelector('.heart-burst').classList.add('fade-out');
+                    }, 1400);
                 }, 600);
             });
         });
