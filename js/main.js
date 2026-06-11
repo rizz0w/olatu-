@@ -22,6 +22,11 @@
     setInterval(createHeart, 700);
 })();
 
+const startAudio = () => {
+    const audio = new Audio('assets/audio/sweet.mp3');
+    audio.play();
+}
+
 /* ── NO BUTTON – ESCAPE LOGIC ────────────────────────────── */
 const btnNo = document.getElementById('btn-no');
 let noAnchored = false;
@@ -55,8 +60,10 @@ btnNo.addEventListener('mouseenter', anchorAndEscape);
 btnNo.addEventListener('touchstart', anchorAndEscape, { passive: true });
 btnNo.addEventListener('click', anchorAndEscape);
 
+
 /* ── YES BUTTON CORREGIDO ─────────────────────────────────── */
-document.getElementById('btn-yes').addEventListener('click', function () {
+document.getElementById('btn-yes').addEventListener('click', () => {
+    startAudio();
     launchConfetti();
 
     const proposal = document.getElementById('screen-proposal');
@@ -65,6 +72,7 @@ document.getElementById('btn-yes').addEventListener('click', function () {
 
     setTimeout(() => {
         proposal.classList.add('hidden');
+
 
         const final = document.getElementById('screen-final');
         final.classList.remove('hidden');
